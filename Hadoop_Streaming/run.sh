@@ -23,6 +23,7 @@ yarn jar /opt/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.1.1.jar\
  -output masterpieces_wordcount\
  -mapper mapper.py\
  -reducer reducer.py\
+ -combiner reducer.py\
  -file mapper.py\
  -file reducer.py
 
@@ -30,7 +31,6 @@ yarn jar /opt/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.1.1.jar\
 # -reducer /usr/bin/wc\
 # -D mapreduce.job.reduces=0
 
-# -combiner "python reducer.py"
 
 rm -r masterpieces_wordcount
 mkdir masterpieces_wordcount
