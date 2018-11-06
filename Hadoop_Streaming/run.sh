@@ -1,9 +1,7 @@
 #!/bin/sh
 
 #rm -r masterpieces
-#rm -r masterpieces_wordcount
 #mkdir masterpieces
-#mkdir masterpieces_wordcount
 
 #wget https://storage.cloud.google.com/apache-beam-samples/shakespeare/kinglear.txt
 #mv kinglear.txt masterpieces
@@ -14,9 +12,11 @@
 #wget https://storage.cloud.google.com/apache-beam-samples/shakespeare/romeoandjuliet.txt
 #mv romeoandjuliet.txt masterpieces
 
+#hdfs dfs -rm -R /user/ubuntu/masterpieces
 #hadoop fs -put masterpieces
 
-#yarn jar /usr/lib/hadoop-mapreduce/hadoop-streaming.jar\
+hdfs dfs -rm -R /user/ubuntu/masterpieces_wordcount
+
 #mapred streaming\
 yarn jar /opt/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.1.1.jar\
  -input masterpieces\
@@ -32,5 +32,8 @@ yarn jar /opt/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.1.1.jar\
 
 # -combiner "python reducer.py"
 
+rm -r masterpieces_wordcount
+mkdir masterpieces_wordcount
+hdfs dfs -get /user/ubuntu/masterpieces_wordcount/*  masterpieces_wordcount
 
 hadoop fs -text masterpieces_wordcount/* | sort -n -k2,2 | tail -n5
