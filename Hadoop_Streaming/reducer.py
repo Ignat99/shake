@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #reducer.py
 import sys
 
