@@ -17,4 +17,6 @@ def stem(doc):
     res['stemmed'] = [stemmer.stem(token) for token in res['tokens']]
     return res
 
-stemmed_docs = clean_text_rdd.map(tokenize).map(stem).cache()
+RDDread = sc.textFile ("file:///home/ubuntu/shake/mas/shakespeare_*.txt")
+#stemmed_docs = clean_text_rdd.map(tokenize).map(stem).cache()
+stemmed_docs = RDDread.map(tokenize).map(stem).cache()
